@@ -16,8 +16,9 @@ GUIDELINELY_API_BASE <- "https://guidelines.1681248.com/api/v1"
 health_check <- function() {
   httr2::request(paste0(GUIDELINELY_API_BASE, "/health")) |>
     httr2::req_error(body = function(resp) {
-      msg <- httr2::resp_body_json(resp)$message
-      if (!is.null(msg)) msg else "API request failed"
+      err_body <- httr2::resp_body_json(resp)
+      msg <- err_body$detail %||% err_body$message
+      if (!is.null(msg)) as.character(msg) else "API request failed"
     }) |>
     httr2::req_perform() |>
     httr2::resp_body_json(simplifyVector = TRUE)
@@ -38,8 +39,9 @@ health_check <- function() {
 readiness_check <- function() {
   httr2::request(paste0(GUIDELINELY_API_BASE, "/ready")) |>
     httr2::req_error(body = function(resp) {
-      msg <- httr2::resp_body_json(resp)$message
-      if (!is.null(msg)) msg else "API request failed"
+      err_body <- httr2::resp_body_json(resp)
+      msg <- err_body$detail %||% err_body$message
+      if (!is.null(msg)) as.character(msg) else "API request failed"
     }) |>
     httr2::req_perform() |>
     httr2::resp_body_json(simplifyVector = TRUE)
@@ -59,8 +61,9 @@ readiness_check <- function() {
 list_parameters <- function() {
   httr2::request(paste0(GUIDELINELY_API_BASE, "/parameters")) |>
     httr2::req_error(body = function(resp) {
-      msg <- httr2::resp_body_json(resp)$message
-      if (!is.null(msg)) msg else "API request failed"
+      err_body <- httr2::resp_body_json(resp)
+      msg <- err_body$detail %||% err_body$message
+      if (!is.null(msg)) as.character(msg) else "API request failed"
     }) |>
     httr2::req_perform() |>
     httr2::resp_body_json(simplifyVector = TRUE)
@@ -86,8 +89,9 @@ search_parameters <- function(q = "", media = NULL) {
   req <- httr2::request(paste0(GUIDELINELY_API_BASE, "/parameters/search")) |>
     httr2::req_url_query(q = q) |>
     httr2::req_error(body = function(resp) {
-      msg <- httr2::resp_body_json(resp)$message
-      if (!is.null(msg)) msg else "API request failed"
+      err_body <- httr2::resp_body_json(resp)
+      msg <- err_body$detail %||% err_body$message
+      if (!is.null(msg)) as.character(msg) else "API request failed"
     })
   
   if (!is.null(media)) {
@@ -113,8 +117,9 @@ search_parameters <- function(q = "", media = NULL) {
 list_media <- function() {
   httr2::request(paste0(GUIDELINELY_API_BASE, "/media")) |>
     httr2::req_error(body = function(resp) {
-      msg <- httr2::resp_body_json(resp)$message
-      if (!is.null(msg)) msg else "API request failed"
+      err_body <- httr2::resp_body_json(resp)
+      msg <- err_body$detail %||% err_body$message
+      if (!is.null(msg)) as.character(msg) else "API request failed"
     }) |>
     httr2::req_perform() |>
     httr2::resp_body_json(simplifyVector = TRUE)
@@ -134,8 +139,9 @@ list_media <- function() {
 list_sources <- function() {
   httr2::request(paste0(GUIDELINELY_API_BASE, "/sources")) |>
     httr2::req_error(body = function(resp) {
-      msg <- httr2::resp_body_json(resp)$message
-      if (!is.null(msg)) msg else "API request failed"
+      err_body <- httr2::resp_body_json(resp)
+      msg <- err_body$detail %||% err_body$message
+      if (!is.null(msg)) as.character(msg) else "API request failed"
     }) |>
     httr2::req_perform() |>
     httr2::resp_body_json(simplifyVector = TRUE)
@@ -155,8 +161,9 @@ list_sources <- function() {
 get_stats <- function() {
   httr2::request(paste0(GUIDELINELY_API_BASE, "/stats")) |>
     httr2::req_error(body = function(resp) {
-      msg <- httr2::resp_body_json(resp)$message
-      if (!is.null(msg)) msg else "API request failed"
+      err_body <- httr2::resp_body_json(resp)
+      msg <- err_body$detail %||% err_body$message
+      if (!is.null(msg)) as.character(msg) else "API request failed"
     }) |>
     httr2::req_perform() |>
     httr2::resp_body_json(simplifyVector = TRUE)
@@ -206,8 +213,9 @@ calculate_guidelines <- function(parameter, media, context = NULL, target_unit =
   req <- httr2::request(paste0(GUIDELINELY_API_BASE, "/calculate")) |>
     httr2::req_body_json(body) |>
     httr2::req_error(body = function(resp) {
-      msg <- httr2::resp_body_json(resp)$message
-      if (!is.null(msg)) msg else "API request failed"
+      err_body <- httr2::resp_body_json(resp)
+      msg <- err_body$detail %||% err_err_body$message
+      if (!is.null(msg)) as.character(msg) else "API request failed"
     })
   
   if (!is.null(api_key)) {
@@ -271,8 +279,9 @@ calculate_batch <- function(parameters, media, context = NULL, api_key = NULL) {
   req <- httr2::request(paste0(GUIDELINELY_API_BASE, "/calculate/batch")) |>
     httr2::req_body_json(body, auto_unbox = TRUE) |>
     httr2::req_error(body = function(resp) {
-      msg <- httr2::resp_body_json(resp)$message
-      if (!is.null(msg)) msg else "API request failed"
+      err_body <- httr2::resp_body_json(resp)
+      msg <- err_body$detail %||% err_body$message
+      if (!is.null(msg)) as.character(msg) else "API request failed"
     })
   
   if (!is.null(api_key)) {
