@@ -1,6 +1,50 @@
 # API base URL
 GUIDELINELY_API_BASE <- "https://guidelines.1681248.com/api/v1"
 
+#' Check if the API service is running
+#'
+#' Lightweight health check that returns 200 OK if the service is running.
+#' Does not check dependencies.
+#'
+#' @return A character string indicating service status.
+#' @export
+#' @examples
+#' \dontrun{
+#' # Check if API is running
+#' health_check()
+#' }
+health_check <- function() {
+  httr2::request(paste0(GUIDELINELY_API_BASE, "/health")) |>
+    httr2::req_error(body = function(resp) {
+      msg <- httr2::resp_body_json(resp)$message
+      if (!is.null(msg)) msg else "API request failed"
+    }) |>
+    httr2::req_perform() |>
+    httr2::resp_body_json(simplifyVector = TRUE)
+}
+
+#' Check if the API is ready to handle requests
+#'
+#' Readiness check that verifies the service can handle requests
+#' (database is accessible).
+#'
+#' @return A character string indicating service readiness.
+#' @export
+#' @examples
+#' \dontrun{
+#' # Check if API is ready
+#' readiness_check()
+#' }
+readiness_check <- function() {
+  httr2::request(paste0(GUIDELINELY_API_BASE, "/ready")) |>
+    httr2::req_error(body = function(resp) {
+      msg <- httr2::resp_body_json(resp)$message
+      if (!is.null(msg)) msg else "API request failed"
+    }) |>
+    httr2::req_perform() |>
+    httr2::resp_body_json(simplifyVector = TRUE)
+}
+
 #' List all available chemical parameters
 #'
 #' Get complete list of all available chemical parameters in the database.

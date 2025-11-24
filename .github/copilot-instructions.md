@@ -24,14 +24,18 @@ This project runs in an RStudio dev container on Ubuntu 24.04.2 LTS.
 
 ### Main Endpoint Groups
 
+**Health Endpoints** (GET, no auth):
+- `/api/v1/health` - Lightweight health check (returns 200 if service is running)
+- `/api/v1/ready` - Readiness check with database connectivity
+
 **Metadata Endpoints** (GET, no auth):
 - `/api/v1/parameters` - List all chemical parameters
-- `/api/v1/parameters/search?q=...` - Search parameters by substring
-- `/api/v1/media` - List environmental media types (surface_water, soil, etc.)
+- `/api/v1/parameters/search?q=...` - Search parameters by substring (optionally filter by media)
+- `/api/v1/media` - List environmental media types (surface_water, soil, sediment, air, etc.)
 - `/api/v1/sources` - List guideline sources and documents
 - `/api/v1/stats` - Database statistics
 
-**Calculation Endpoints** (POST, no auth):
+**Calculation Endpoints** (POST, optional API key):
 - `/api/v1/calculate` - Calculate guidelines for single parameter
 - `/api/v1/calculate/batch` - Calculate for multiple parameters (max 50)
 

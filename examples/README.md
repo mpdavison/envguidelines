@@ -20,6 +20,10 @@ Sys.setenv(GUIDELINELY_API_KEY = "your_api_key_here")
 Learn how to explore available parameters, media types, and data sources. No API key required.
 
 ```r
+# Check API health
+health_check()
+readiness_check()
+
 # List all parameters
 params <- list_parameters()
 

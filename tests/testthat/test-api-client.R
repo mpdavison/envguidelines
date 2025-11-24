@@ -1,6 +1,18 @@
 # Tests for API client functions
 # Note: These tests require httptest2 for mocking HTTP requests
 
+test_that("health_check works", {
+  skip_if_not_installed("httptest2")
+  # Add httptest2 mocked tests here when implementing
+  expect_true(TRUE)
+})
+
+test_that("readiness_check works", {
+  skip_if_not_installed("httptest2")
+  # Add httptest2 mocked tests here when implementing
+  expect_true(TRUE)
+})
+
 test_that("list_parameters works", {
   skip_if_not_installed("httptest2")
   # Add httptest2 mocked tests here when implementing

@@ -21,6 +21,10 @@ The main API endpoints **do not require authentication**:
 ```r
 library(guidelinely)
 
+# Check API health status
+health_check()
+readiness_check()
+
 # List all available chemical parameters
 params <- list_parameters()
 
@@ -134,10 +138,11 @@ media <- list_media()
 
 ## Data Format
 
-Guideline values are returned in PostgreSQL `unitrange` format:
+Guideline values are returned in [PostgreSQL `unitrange` format](https://github.com/df7cb/postgresql-unit):
 - `[10 μg/L,100 μg/L]` - Range from 10 to 100 μg/L
 - `(,87.0 μg/L]` - Upper limit only (≤87.0 μg/L)
 - `[5.0 mg/L,)` - Lower limit only (≥5.0 mg/L)
+Additionally, upper and lower bounds are returned as separate `float` values.
 
 Results include:
 - Calculated guideline values (when formulas exist)
@@ -147,4 +152,4 @@ Results include:
 
 ## API Documentation
 
-For complete API documentation, visit: https://guidelines.1681248.com/docs
+For complete API documentation, visit: https://guidelines.1681248.com/docs or https://guidelines.1681248.com/redoc.

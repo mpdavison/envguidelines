@@ -4,6 +4,14 @@
 
 library(guidelinely)
 
+# Check API health status
+health_status <- health_check()
+print(health_status)
+
+# Check if API is ready to handle requests
+readiness_status <- readiness_check()
+print(readiness_status)
+
 # List all available chemical parameters
 all_params <- list_parameters()
 head(all_params, 10)
