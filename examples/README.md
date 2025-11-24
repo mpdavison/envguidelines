@@ -8,7 +8,7 @@ Before running these examples, install the package and set your API key:
 
 ```r
 # Install package
-remotes::install_github("yourusername/guidelinely")
+remotes::install_github("mpdavison/envguidelines")
 
 # Set API key (required for calculation endpoints)
 Sys.setenv(GUIDELINELY_API_KEY = "your_api_key_here")
@@ -95,4 +95,4 @@ Context parameters must be strings with units (Pint format):
 ## Need Help?
 
 - API Documentation: https://guidelines.1681248.com/docs
-- Package Issues: https://github.com/yourusername/guidelinely/issues
+- Package Issues: https://github.com/mpdavison/envguidelines/issues

@@ -11,7 +11,7 @@ You can install the development version of guidelinely from GitHub using the `re
 
 ```r
 # install.packages("remotes")
-remotes::install_github("yourusername/guidelinely")
+remotes::install_github("mpdavison/envguidelines")
 ```
 
 ## Quick Start
