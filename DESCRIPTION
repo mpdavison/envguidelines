@@ -1,0 +1,28 @@
+Package: guidelinely
+Type: Package
+Title: R Client for the Guidelinely Environmental Guidelines API
+Version: 0.1.0
+Authors@R: 
+    person("First", "Last", email = "your.email@example.com", role = c("aut", "cre"))
+Description: Provides programmatic access to the Guidelinely API 
+    (https://guidelines.1681248.com), an environmental guideline calculation and 
+    search API. Calculate guideline values for chemical parameters in various 
+    environmental media (water, soil, sediment) based on environmental context 
+    (pH, hardness, temperature). Search parameters, query metadata, and access 
+    comprehensive guideline sources through a clean R interface.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.0
+Imports:
+    httr2 (>= 1.0.0),
+    rlang (>= 1.0.0)
+Suggests:
+    testthat (>= 3.0.0),
+    httptest2 (>= 1.0.0),
+    tibble,
+    dplyr,
+    withr
+URL: https://github.com/yourusername/guidelinely
+BugReports: https://github.com/yourusername/guidelinely/issues
