@@ -11,7 +11,7 @@ Sys.setenv(GUIDELINELY_API_KEY = "your_api_key_here")
 
 # Calculate multiple parameters
 results <- calculate_batch(
-  parameters = c("Aluminum", "Copper", "Lead", "Zinc", "Cadmium"),
+  parameters = list("Aluminum", "Copper", "Lead", "Zinc", "Cadmium"),
   media = "surface_water",
   context = list(pH = "7.0 1", hardness = "100 mg/L")
 )

@@ -50,7 +50,7 @@ Efficiently calculate multiple parameters at once - faster than individual calls
 
 ```r
 results <- calculate_batch(
-  parameters = c("Aluminum", "Copper", "Lead", "Zinc"),
+  parameters = list("Aluminum", "Copper", "Lead", "Zinc"),
   media = "surface_water",
   context = list(pH = "7.0 1", hardness = "100 mg/L")
 )
